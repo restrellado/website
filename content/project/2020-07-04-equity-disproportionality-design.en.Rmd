@@ -1,0 +1,20 @@
+---
+title: Equity, Disproportionality & Design
+author: Ryan Estrellado
+date: '2020-07-04'
+slug: equity-disproportionality-design
+categories: []
+tags: []
+summary: 'Preventing disproportionality in schools.'
+authors: []
+external_link: 'https://equityanddesign.com'
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+url_code: ''
+url_pdf: ''
+url_slides: ''
+url_video: ''
+slides: ''
+---
