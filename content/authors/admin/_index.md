@@ -18,12 +18,9 @@ organizations:
 - url: ""
 
 # Short bio (displayed in user profile at end of posts)
-bio: I'm an Executive Consultant at the San Diego South County SELPA, where I design solutions to help SELPAs build equitable systems for students with disabilities.
+bio: I work at the San Diego South County SELPA, where I design solutions to help SELPAs build equitable systems for students with disabilities. 
 
 interests:
-- Equity in education
-- Data science
-- Special education
 
 education:
 
@@ -60,5 +57,4 @@ user_groups:
 - Visitors
 ---
 
-I'm an Executive Consultant at the San Diego South County SELPA, where I design solutions to help SELPAs build equitable systems for students with disabilities. I believe in combining my experience in education, a practical style of data science, and collaboration to answer the questions that make a difference for students.
-
+I work at the San Diego South County SELPA, where I design solutions to help school districts build equitable systems for students with disabilities. This is my personal website, where I write about data work, education and other projects I'm working on. 
