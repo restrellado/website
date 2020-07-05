@@ -1,0 +1,12 @@
+# IDEs
+.idea/
+
+# Hugo
+resources/
+public/
+.Rproj.user
+
+content/authors/.DS_Store
+content/authors/admin/.DS_Store
+.DS_Store
+.Rhistory
