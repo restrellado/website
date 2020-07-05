@@ -43,7 +43,7 @@ villagers %>%
   head(n = 10) %>% 
   kable(caption = "Ten Most Wished For Villagers", 
         col.names = c("name", "species", "personality", "wish score")) %>% 
-  kable_styling()
+  kable_styling(full_width = FALSE, position = "center")
 ```
 
 ## Personality and Species 
@@ -93,7 +93,7 @@ villagers %>%
             count = n()) %>% 
   kable(caption = "Cat vs. Mouse (Cat Wins)", 
         col.names = c("species", "mean wish score", "standard dev", "count")) %>% 
-  kable_styling()
+  kable_styling(full_width = FALSE, position = "center")
 ```
 
 Even the three cat villagers who have the jock personality achieved decent to excellent places in the rankings. The lowest wish score of the three cat jocks was 169 and belongs to a feline named Stinky whose catchphrase is “GAAHHH.” 
@@ -105,7 +105,7 @@ villagers %>%
   arrange(desc(wish_score)) %>% 
   kable(caption = "Cats With Jock Personalities", 
         col.names = c("name", "species", "personality", "catchphrase", "wish score")) %>% 
-  kable_styling()
+  kable_styling(full_width = FALSE, position = "center")
 ```
 
 ![*Stinky, the cat with the lowest wish score among cat jocks, isn't doing that bad for himself. Image: https://twitter.com/sleepiest_/status/1246030449643675649*](/img/EUrKFv9U4AEDzYa.jpeg)
