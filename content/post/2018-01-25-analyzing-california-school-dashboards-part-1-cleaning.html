@@ -1,0 +1,200 @@
+---
+title: 'California School Dashboards Part 1: Cleaning the Data' 
+description: "Cleaning the California School Dashboard data to help your analysis"
+url: "post/analyzing-california-school-dashboards-part-1-cleaning/"
+author: Ryan Estrellado
+date: '2018-02-08'
+slug: analyzing-california-school-dashboards-part-1-cleaning
+categories: []
+tags: [rstats, education]
+---
+
+
+
+<p><em>This is part one of a three part series where I’ll be working with California School Dashboard data by cleaning, visualizaing, and exploring through modeling.</em></p>
+<div id="introduction-its-ok-to-skip-around" class="section level1">
+<h1>Introduction: It’s Ok to Skip Around</h1>
+<p>I’m writing this series for data scientists, public school educators, and data scientists who are also public school educators. Turns out, this is pretty hard to do. Most data scientists want to see reprodicible code because it <a href="https://simplystatistics.org/2014/06/06/the-real-reason-reproducible-research-is-important/">explains the analysis explicitly</a>. On the other hand, public educators may be less interested in the code and more interested in the process, questions, and answers.</p>
+<p>So to keep things as interesting as I can for all parties, I broke up the post with descriptive headers so readers can skip sections or jump around to where their curiosity takes them. There’s code scattered throughout the post, but if that’s not interesting to you feel free to jump right over it and into the results. These usually appear right after the code. If code is your thing, you are always welcome to <a href="https://github.com/restrellado/blogdown_blog">view all of it on my GitHub profile</a> and to help me by <a href="https://help.github.com/articles/creating-a-pull-request/">making contributions and improvements</a>.</p>
+</div>
+<div id="theres-more-to-the-data-than-just-the-dashboard-website" class="section level1">
+<h1>There’s More to the Data Than Just the Dashboard Website</h1>
+<p>The California School Dashboard website was built to show and analyze public school metrics such as English language arts test scores and graduation rates. The website delivers the information using icons that show scores and growth from the previous year. They also use a color coded grid so you can compare scores and growth across schools.</p>
+<p>For a lot of folks the interface and visuals on the website will be enough to answer the questions they are asking about a school district. Others may find that the natural progression of curiosity leads to questions that require stepping outside of the California School Dashboard website to ask more specific questions and to compare across districts. If you want to start answering questions outside of what’s available in the dashboard website, you’ll need to get the data out of the website and work with it directly.</p>
+<p>This series of posts will work through the analysis process, covering the main steps I take when exploring public education datasets:</p>
+<ul>
+<li>Importing and cleaning the data</li>
+<li>Exploring the data through visualization</li>
+<li>Exploring the data through modeling</li>
+</ul>
+<p>We’ll cover the first step here and will do the rest in later posts.</p>
+</div>
+<div id="importing-the-raw-data" class="section level1">
+<h1>Importing the Raw Data</h1>
+<p>I picked a school district and did some cleaning to hide the district and school names. Every California school district’s data is available on the California School Dashboard website. This demonstration will work on any of the dashboard math datasets.</p>
+<p>The California Department of Education makes this data available on the five-by-five grid pages. First we’ll bring the data into R. Here’s how you get to the dataset:</p>
+<p><img src="/img/math_dashboard.png" /></p>
+<ul>
+<li>From the district’s dashboard page, navigate to the metric you want to explore</li>
+<li>Click on the five-by-five link</li>
+<li>Click on the View Detailed Data link</li>
+<li>Download the text file by clicking on the Download Data link</li>
+</ul>
+</div>
+<div id="clearer-column-names-helps-readability" class="section level1">
+<h1>Clearer Column Names Helps Readability</h1>
+<p>Here’s what the math dataset looks like without any changes:</p>
+<pre class="r"><code>url &lt;- &quot;https://raw.githubusercontent.com/restrellado/data_for_blog/master/Somedistrictmath.txt&quot;
+
+# Show the whole CDS code instead of scientific format
+math &lt;- read_tsv(url, col_types = cols(cds = col_character()))
+math</code></pre>
+<pre><code>## # A tibble: 232 x 26
+##    cds   rtype schoolname districtname countyname charter_flag coe_flag
+##    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;      &lt;chr&gt;        &lt;chr&gt;      &lt;lgl&gt;        &lt;lgl&gt;   
+##  1 14    D     &lt;NA&gt;       district_1   county_1   NA           NA      
+##  2 14    D     &lt;NA&gt;       district_1   county_1   NA           NA      
+##  3 14    D     &lt;NA&gt;       district_1   county_1   NA           NA      
+##  4 14    D     &lt;NA&gt;       district_1   county_1   NA           NA      
+##  5 14    D     &lt;NA&gt;       district_1   county_1   NA           NA      
+##  6 14    D     &lt;NA&gt;       district_1   county_1   NA           NA      
+##  7 14    D     &lt;NA&gt;       district_1   county_1   NA           NA      
+##  8 14    D     &lt;NA&gt;       district_1   county_1   NA           NA      
+##  9 14    D     &lt;NA&gt;       district_1   county_1   NA           NA      
+## 10 14    D     &lt;NA&gt;       district_1   county_1   NA           NA      
+## # … with 222 more rows, and 19 more variables: studentgroup &lt;chr&gt;,
+## #   currdenom &lt;dbl&gt;, currstatus &lt;dbl&gt;, priordenom &lt;dbl&gt;, priorstatus &lt;dbl&gt;,
+## #   change &lt;dbl&gt;, statuslevel &lt;dbl&gt;, changelevel &lt;dbl&gt;, color &lt;dbl&gt;, box &lt;dbl&gt;,
+## #   caa_denom &lt;dbl&gt;, caa_level1_num &lt;dbl&gt;, caa_level1_pct &lt;dbl&gt;,
+## #   caa_level2_num &lt;dbl&gt;, caa_level2_pct &lt;dbl&gt;, caa_level3_num &lt;dbl&gt;,
+## #   caa_level3_pct &lt;dbl&gt;, ReportingYear &lt;chr&gt;, X26 &lt;lgl&gt;</code></pre>
+<p>Notice that the column names aren’t immediately clear about what they’re describing. For example, the sizes of the student subgroups are kept in a column called <code>currdenom</code>. The average distance from score level of three is <code>currstatus</code>.</p>
+<p>It’s super important to take the time to review the <a href="https://www.cde.ca.gov/ta/ac/cm/mathgr38fall17.asp">file layout</a>, which provides definitions for every column name. It’s not the most fun reading, but you’ll find that you can help people answer questions better when you are confident you understand precisely what the numbers mean. Once you have a good understanding of what each column means, you can drop the column names you don’t need for your analysis and rename the ones that you keep. Let’s drop all columns except the school name, subgroup name, size of the subgroup, average distance from three, and the change from last year:</p>
+<pre class="r"><code>math &lt;- math %&gt;% 
+  # Filter on just schools, not whole district counts 
+  filter(rtype == &quot;S&quot;) %&gt;% 
+  select(school = schoolname, 
+         subgroup = studentgroup, 
+         subgroup_size = currdenom, 
+         avg_dfrom3 = currstatus, 
+         change)
+math</code></pre>
+<pre><code>## # A tibble: 215 x 5
+##    school    subgroup subgroup_size avg_dfrom3 change
+##    &lt;chr&gt;     &lt;chr&gt;            &lt;dbl&gt;      &lt;dbl&gt;  &lt;dbl&gt;
+##  1 school_13 AA                   2       NA     NA  
+##  2 school_13 ALL                217       57.3    0.7
+##  3 school_13 AS                  45       73.8    2.4
+##  4 school_13 EL                  44       26.1    8.9
+##  5 school_13 ELO                 18       -8     14.5
+##  6 school_13 EO                 158       60.6   -3.7
+##  7 school_13 FI                   1       NA     NA  
+##  8 school_13 HI                  23      -22     -6.3
+##  9 school_13 MR                  31       62.5  -17.3
+## 10 school_13 RFP                 26       49.7   -2.6
+## # … with 205 more rows</code></pre>
+<p>Much better! Now we have only the columns we want, renamed so they’re clearer:</p>
+<ul>
+<li><code>school</code>: name of the school</li>
+<li><code>subgroup</code>: name of the subgroup</li>
+<li><code>subgroup_size</code>: number of students in the subgroup</li>
+<li><code>avg_dfrom3</code>: average distance from test score level three for each subgroup</li>
+<li><code>change</code>: change in distance from three score compared to last year</li>
+</ul>
+<p>There’s one more thing I want to do here. It’s hard to see right away which subgroups I’m looking at because the dataset uses subgroup codes instead of actual names. <em>We want to use our brain power more to ask and answer questions and less to remember what codes mean</em>, so let’s change that. I built a handy tool in my <a href="https://github.com/restrellado/spedtools">spedtools R package</a> that will quickly rename the codes to actual words.</p>
+<pre class="r"><code>(math &lt;- math %&gt;% mutate(subgroup = convert_subgroup(subgroup)))</code></pre>
+<pre><code>## # A tibble: 215 x 5
+##    school    subgroup                   subgroup_size avg_dfrom3 change
+##    &lt;chr&gt;     &lt;chr&gt;                              &lt;dbl&gt;      &lt;dbl&gt;  &lt;dbl&gt;
+##  1 school_13 Black/African American                 2       NA     NA  
+##  2 school_13 All Students                         217       57.3    0.7
+##  3 school_13 Asian                                 45       73.8    2.4
+##  4 school_13 English Learner                       44       26.1    8.9
+##  5 school_13 English Learners Only                 18       -8     14.5
+##  6 school_13 English Only                         158       60.6   -3.7
+##  7 school_13 Filipino                               1       NA     NA  
+##  8 school_13 Hispanic                              23      -22     -6.3
+##  9 school_13 Multiple Races/Two or More            31       62.5  -17.3
+## 10 school_13 RFEPs Only                            26       49.7   -2.6
+## # … with 205 more rows</code></pre>
+</div>
+<div id="exploring-a-clean-dataset" class="section level1">
+<h1>Exploring a Clean Dataset</h1>
+<p>Now that we have just the columns we want to explore and actual subgroup names instead of codes, we can start exploring the dataset faster with a series of quick exploratory questions. We just want to indulge a little curiosity and ask quick questions and answers to get the analytic juices going. <strong>My favorite way to do this is to encourage lots of questions and to provide rapid answers so the process feels casual and conversational, rather than writing up a list of questions and taking days to respond with the data.</strong> Having a clean dataset ready and being fast at the keyboard helps us do this. Here are some examples:</p>
+<p><strong>How different are the student subgroups in size?</strong></p>
+<p>Sometimes you want to get a sense of how big the student subgroups are, especially when dealing with metrics like “average distance of three”, the results of which are influenced in some part by how big the group is. Here are the top ten biggest subgroup student counts in this dataset, along with their school.</p>
+<pre class="r"><code>math %&gt;% 
+  select(-c(avg_dfrom3, change)) %&gt;% 
+  filter(subgroup != &quot;All Students&quot;) %&gt;% 
+  filter(min_rank(desc(subgroup_size)) &lt;= 10) %&gt;% 
+  arrange(desc(subgroup_size))</code></pre>
+<pre><code>## # A tibble: 10 x 3
+##    school    subgroup     subgroup_size
+##    &lt;chr&gt;     &lt;chr&gt;                &lt;dbl&gt;
+##  1 school_10 English Only           765
+##  2 school_07 English Only           628
+##  3 school_10 White                  509
+##  4 school_07 Asian                  474
+##  5 school_12 English Only           404
+##  6 school_07 White                  380
+##  7 school_10 Asian                  331
+##  8 school_12 Asian                  254
+##  9 school_12 White                  251
+## 10 school_04 English Only           190</code></pre>
+<p>It’s important to note here that not all of these groups are mutually exclusive. For example, it’s possible for a student to be counted both in the <code>White</code> category and in the <code>English Only</code> category.</p>
+<p><strong>Where were the highest performing English Learner groups?</strong></p>
+<p>Two questions that seem to come up a lot when I work with school staff are</p>
+<ul>
+<li>Who are the students behind the numbers?</li>
+<li>Who do we know that’s doing a great job at this?</li>
+</ul>
+<p>One way to answer the second question is to transform the data so it shows you the schools with the top ten average distance from 3 for the subgroup you’re interested in. Here’s that transformation for English learners:</p>
+<pre class="r"><code>math %&gt;% 
+  select(-c(subgroup_size, change)) %&gt;% 
+  filter(subgroup == &quot;English Learner&quot;) %&gt;% 
+  filter(min_rank(desc(avg_dfrom3)) &lt;= 10) %&gt;% 
+  arrange(desc(avg_dfrom3))</code></pre>
+<pre><code>## # A tibble: 10 x 3
+##    school    subgroup        avg_dfrom3
+##    &lt;chr&gt;     &lt;chr&gt;                &lt;dbl&gt;
+##  1 school_09 English Learner       90.5
+##  2 school_07 English Learner       72.1
+##  3 school_14 English Learner       61.2
+##  4 school_04 English Learner       54  
+##  5 school_02 English Learner       50.7
+##  6 school_15 English Learner       49.7
+##  7 school_01 English Learner       48.9
+##  8 school_03 English Learner       43.5
+##  9 school_06 English Learner       37.6
+## 10 school_05 English Learner       32.8</code></pre>
+<p>Now school staff can call colleagues at other schools to get a conversation going about what’s been working well.</p>
+<p><strong>Which schools had the highest increases from last year in each subgroup?</strong></p>
+<p>We can keep the conversation going by looking at the top two positive change scores for every subgroup. These are the schools that had the best increases in the distance from three score from last year. Now schools can get a sense of where to start calling if they want to hear about strategies, interventions, or initiatives that their colleagues are using to be successful.</p>
+<pre class="r"><code>math %&gt;% 
+  select(-subgroup_size) %&gt;% 
+  # Remove the All Students category so we&#39;re just looking at subgroups
+  filter(subgroup != &quot;All Students&quot;, change &gt; 0) %&gt;%
+  group_by(subgroup) %&gt;% 
+  filter(min_rank(desc(change)) &lt;= 2) %&gt;% 
+  select(subgroup, school, change) %&gt;% 
+  arrange(subgroup)</code></pre>
+<pre><code>## # A tibble: 21 x 3
+## # Groups:   subgroup [11]
+##    subgroup               school    change
+##    &lt;chr&gt;                  &lt;chr&gt;      &lt;dbl&gt;
+##  1 Asian                  school_08   12.4
+##  2 Asian                  school_12   11.6
+##  3 Black/African American school_12   58.4
+##  4 English Learner        school_13    8.9
+##  5 English Learner        school_04    3.4
+##  6 English Learners Only  school_13   14.5
+##  7 English Learners Only  school_04   34.1
+##  8 English Only           school_09    9.1
+##  9 English Only           school_12    6.3
+## 10 Hispanic               school_09   13.1
+## # … with 11 more rows</code></pre>
+</div>
+<div id="conclusion" class="section level1">
+<h1>Conclusion</h1>
+<p>The California School Dashboard website makes much of its underlying data available for us to explore. It’s worthwhile to import and clean that data so when the exploration starts, school staff can rapidly ask questions and get answers in a way that organically moves the conversation towards the important questions. Next we’ll look at ways to explore the data further through data visualization.</p>
+</div>

@@ -4,7 +4,7 @@ author: Ryan Estrellado
 date: '2020-05-24'
 slug: what-do-animal-crossing-players-look-for-in-villagers
 categories: []
-tags: []
+tags: [rstats]
 ---
 
 ```{r packages, message=FALSE, echo=FALSE}

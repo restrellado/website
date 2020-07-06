@@ -1,0 +1,124 @@
+---
+title: 'Public School Data is Great, But You Have to Clean It First'
+author: Ryan Estrellado
+date: '2018-01-08'
+slug: demonstration-cleaning-your-data
+categories: []
+tags: [rstats, education]
+---
+
+
+
+<p>Using public school data can help school districts see the bigger picture of what is going on. So why don’t we see more districts taking advantage of this information gold mine? The datasets available from federal and state governments are often messy in their current form. This raw data has to be cleaned before it can be useful and school districts don’t often have the staff or time to clean large datasets or groups of large datasets. Here are two examples of really useful datasets, but in their raw, messy form:</p>
+<ul>
+<li>California Department of Education <a href="https://www.cde.ca.gov/schooldirectory/report?rid=dl1&amp;tp=txt">Public Schools and Districts dataset</a><br />
+</li>
+<li>California School Dashboards <a href="https://www6.cde.ca.gov/californiamodel/report?indicator=ela&amp;year=2017f&amp;cdcode=&amp;scode=6033047&amp;reporttype=sgroups">datasets</a></li>
+</ul>
+<p>Raw data is a treasure chest of information, but it takes time to clean them up in a fast and accurate manner. I wrote this post to demonstrate how I clean raw data before delivering it to a client in a more useful form.</p>
+<div id="example-of-our-data-cleanup" class="section level1">
+<h1>Example of Our Data Cleanup</h1>
+<p>This example uses a dataset of special education dispute resolution data from the <a href="%22https://www2.ed.gov/programs/osepidea/618-data/state-level-data-files/index.html%22">US Department of Education’s website</a>.</p>
+<p>This dataset counts the number of complaints written to state departments of education during the 2014-2015 school year. It includes related dispute resolution outcomes. All of the counts are organized by state.</p>
+</div>
+<div id="clean-data-is-more-useful" class="section level1">
+<h1>Clean Data Is More Useful</h1>
+<p>Here’s the data as-is, if you imported it into your spreadsheet software without cleaning it:</p>
+<p><img src="/img/dr_not_cleaned.png" /></p>
+<p>Here’s the same dataset after I’ve cleaned it:</p>
+<p><img src="/img/dr_cleaned.png" /></p>
+</div>
+<div id="how-i-use-r-to-clean-data" class="section level1">
+<h1>How I Use R to Clean Data</h1>
+<p>I use a <a href="https://www.r-project.org/about.html">programming language called R</a>. R programming allows me to work faster by doing the same steps repeatedly to clean a lot of datasets. Instead of manually cleaning data in a spreadsheet with several steps, I have the steps automated in R. This way, if a client needs a year’s worth of special education data and decides later they want the last ten years for comparison, I can apply the recipe quickly and they can jump right to exploring their data.</p>
+</div>
+<div id="a-more-technical-exploration-and-example-dispute-resolution-plot" class="section level1">
+<h1>A More Technical Exploration and Example Dispute Resolution Plot</h1>
+<p>If you’re interested in what this process looks like, here’s a more detailed explanation. I’ve also included an example visualization of the dispute resolution data that results from the cleaned dataset. All the code for this post can be found in its entirety on my <a href="%22https://github.com/restrellado%22">GitHub page</a>.</p>
+<div id="raw-data" class="section level3">
+<h3>Raw Data</h3>
+<p>First, we’ll have a look at the 2014-2015 dispute resolution data exactly as it is when you download it from the US Department of Education. Notice that when we load the data into memory, R immediately throws a warning about the number of missing column names. Column names will frequently need cleaning because they are often out of order, missing, or not named in a way that is easy to understand.</p>
+<p>Here are the first few lines of the dataset before we’ve done anything to clean it:</p>
+<pre class="r"><code>library(tidyverse)</code></pre>
+<pre class="r"><code>url &lt;- &quot;https://www2.ed.gov/programs/osepidea/618-data/state-level-data-files/part-b-data/dispute-resolution/bdispres2014-15.csv&quot;
+
+dr_notclean &lt;- read_csv(url)</code></pre>
+<pre><code>## Warning: Missing column names filled in: &#39;X3&#39; [3], &#39;X4&#39; [4], &#39;X5&#39; [5], &#39;X6&#39; [6],
+## &#39;X7&#39; [7], &#39;X8&#39; [8], &#39;X9&#39; [9], &#39;X10&#39; [10], &#39;X11&#39; [11], &#39;X12&#39; [12], &#39;X13&#39; [13],
+## &#39;X14&#39; [14], &#39;X15&#39; [15], &#39;X16&#39; [16], &#39;X17&#39; [17], &#39;X18&#39; [18], &#39;X19&#39; [19],
+## &#39;X20&#39; [20], &#39;X21&#39; [21], &#39;X22&#39; [22], &#39;X23&#39; [23], &#39;X24&#39; [24], &#39;X25&#39; [25],
+## &#39;X26&#39; [26], &#39;X27&#39; [27], &#39;X28&#39; [28], &#39;X29&#39; [29], &#39;X30&#39; [30], &#39;X31&#39; [31],
+## &#39;X32&#39; [32], &#39;X33&#39; [33]</code></pre>
+<pre class="r"><code>head(dr_notclean, n = 10)</code></pre>
+<pre><code>## # A tibble: 10 x 33
+##    `Extraction Dat… `6/6/2016` X3    X4    X5    X6    X7    X8    X9    X10  
+##    &lt;chr&gt;            &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;
+##  1 Updated:         &lt;NA&gt;       &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
+##  2 Revised:         &lt;NA&gt;       &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
+##  3 &lt;NA&gt;             &lt;NA&gt;       &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
+##  4 Year             State      Writ… WSC … WSC … WSC … WSC … WSC … WSC … WSC …
+##  5 2014-2015        Alabama    7     5     4     4     1     0     0     2    
+##  6 2014-2015        Alaska     10    10    5     7     3     0     0     0    
+##  7 2014-2015        American … 0     0     0     0     0     0     0     0    
+##  8 2014-2015        Arizona    80    52    36    52    0     0     0     28   
+##  9 2014-2015        Arkansas   19    9     9     9     0     0     0     10   
+## 10 2014-2015        Bureau of… 11    9     9     0     0     0     0     2    
+## # … with 23 more variables: X11 &lt;chr&gt;, X12 &lt;chr&gt;, X13 &lt;chr&gt;, X14 &lt;chr&gt;,
+## #   X15 &lt;chr&gt;, X16 &lt;chr&gt;, X17 &lt;chr&gt;, X18 &lt;chr&gt;, X19 &lt;chr&gt;, X20 &lt;chr&gt;,
+## #   X21 &lt;chr&gt;, X22 &lt;chr&gt;, X23 &lt;chr&gt;, X24 &lt;chr&gt;, X25 &lt;chr&gt;, X26 &lt;chr&gt;,
+## #   X27 &lt;chr&gt;, X28 &lt;chr&gt;, X29 &lt;chr&gt;, X30 &lt;chr&gt;, X31 &lt;chr&gt;, X32 &lt;chr&gt;, X33 &lt;chr&gt;</code></pre>
+<p>You can <a href="%22https://www2.ed.gov/programs/osepidea/618-data/state-level-data-files/part-b-data/dispute-resolution/bdispres2014-15.csv%22">download the whole dataset here</a> so you can inspect it further. You will notice right away that the column labels are pushed down a few rows because the extraction date is at the top instead. That creates a lot of empty space, which is why you see a lot of <code>NA</code> values and <code>X</code>s as column names. You can also see this in the screenshot of the raw data at the start of the post, which gives you a sense of what it would look like if you imported it into your favorite spreadsheet program.</p>
+<p>You will notice that there are thirty one distinct categories with names that don’t immediately describe what the numbers below them mean. For example, <code>Written, Signed Complaints (WSC) Total (1)</code> are the total count of written complaints submitted to the state agency, but might be easier to look at (if not more descriptive) by using something like <code>written_complaints</code>.</p>
+</div>
+<div id="cleaned-data" class="section level3">
+<h3>Cleaned Data</h3>
+<p>But let’s imagine you only want to know about the total number of complaints, the number of complaints that were ajudicated, the number of cases that were pending, and the number that were dismissed. We can make this dataset easier to look at by removing all columns except the four we want. We can also gather the counts up into two columns: one for the thing you are counting, such as total complaints, and one for the count itself. Finally, let’s say we are only interested in the states that have the ten highest counts of total complaints. Here are the first 10 lines of the dataset after we clean it this way:</p>
+<pre class="r"><code>dr &lt;- read_csv(url, skip = 4) %&gt;% 
+  select(State, 
+         Total_Complaints = `Due Process Complaints (DPC) Total (3)`, 
+         Settlement = `DPC Resolution Meetings - Written Settlement Agreements (3.1a)`,
+         Adjudicated = `DPC Hearings (fully adjudicated) Total (3.2)`, 
+         Pending = `DPC Pending (3.3)`, 
+         Dismissed = `DPC Withdrawn or Dismissed (3.4)`) %&gt;% 
+  filter(State != &quot;US, Outlying Areas, and Freely Associated States&quot;) %&gt;% 
+  arrange(desc(Total_Complaints)) %&gt;% 
+  filter(min_rank(desc(Total_Complaints)) &lt;= 10) %&gt;% 
+  gather(Category, Count, -State) 
+
+dr</code></pre>
+<pre><code>## # A tibble: 50 x 3
+##    State                Category         Count
+##    &lt;chr&gt;                &lt;chr&gt;            &lt;dbl&gt;
+##  1 New York             Total_Complaints  5170
+##  2 California           Total_Complaints  3714
+##  3 Puerto Rico          Total_Complaints  2354
+##  4 New Jersey           Total_Complaints  1211
+##  5 Pennsylvania         Total_Complaints   804
+##  6 Massachusetts        Total_Complaints   492
+##  7 District of Columbia Total_Complaints   457
+##  8 Texas                Total_Complaints   370
+##  9 Illinois             Total_Complaints   320
+## 10 Connecticut          Total_Complaints   250
+## # … with 40 more rows</code></pre>
+<p>Much easier to look at! Now you see only the data that helps you answer the questions you want. You can <a href="https://github.com/restrellado/blogdown_blog/blob/master/static/post/2018-01-08-demonstration-cleaning-your-data_files/cleaned_dr.csv">download the cleaned dataset here</a> so you can explore it further.</p>
+</div>
+</div>
+<div id="clean-data-means-faster-analysis" class="section level1">
+<h1>Clean Data Means Faster Analysis</h1>
+<p>When data is cleaned in this way, you will have a much easier time sorting and building visualizations in Excel or with programming languages like R and Python. Now that the data is cleaned, here is a quick visualization that compares the counts for the states that have the ten highest total complaints submitted:</p>
+<pre class="r"><code>ggplot(data = dr, 
+       aes(x = State, y = Count)) + 
+  geom_point(color = &quot;cyan4&quot;, size = 3.0) + 
+  coord_flip() + 
+  facet_wrap(~Category) + 
+  labs(
+    title = &quot;Exploring Dispute Resolution Counts&quot;,
+    subtitle = &quot;Data: 2014-2015 Dispute Resolution Data&quot;, 
+    x = &quot;&quot;, 
+    y = &quot;&quot;)</code></pre>
+<p><img src="/post/2018-01-08-demonstration-cleaning-your-data_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+</div>
+<div id="conclusion" class="section level1">
+<h1>Conclusion</h1>
+<p>This was a <em>very</em> short explanation of what data cleaning is and why it is useful. For an infinitely more thorough explanation of data cleaning theory, I recommend Hadley Wickham’s <a href="http://vita.had.co.nz/papers/tidy-data.html">legenday paper on tidy data cleaning</a>.</p>
+</div>
