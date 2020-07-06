@@ -4,7 +4,7 @@ author: Ryan Estrellado
 date: '2020-07-04'
 slug: equity-disproportionality-design
 categories: []
-tags: []
+tags: [education, special_education, selpa]
 summary: 'ED&D is part of the California Statewide System of Support. Our mission is to partner with SELPAs in California to prevent disproportionality in our schools.'
 authors: []
 external_link: 'https://equityanddesign.com'
