@@ -1,0 +1,22 @@
+---
+title: 'The K-12 Educator’s Data Guidebook: Reimagining Practical Data Use in Schools (Available 2021)'
+author: 'Ryan A. Estrellado'
+date: '2020-10-03'
+slug: k-12-educators-data-guidebook
+tags: [education]
+authors: ["Estrellado, R. A."]
+publication_types:
+  - '0'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+---
+I'm excited to be working with Routledge again for my next book, *The K-12 Educator's Data Guidebook: Reimagining Practical Data Use in Schools*. This is a project I've been wanting to do for a while now. I want to write an easy-to-use reference that everyday educators keep in their work bag as they discover how they want to use data to serve their students better. 
+
+My goal for this book is to reimagine how educators build a foundation for competent data use. With this foundation, educators can better engage school initiatives, professional development, and instructional challenges that require practical data use for improving school systems. 
+
+This book is a field guide for people in schools who think of themselves as “non-data people”. I’m designing the content to be friendly, readable, and easy to carry around. Any educator can use this book as a reference while they review yearly test scores, weekly attendance reports, or statewide performance reporting. And at the same time, practical use of the book will help readers reimagine where data fits into their service to students. 
+
+*The K-12 Educator's Data Guidebook: Reimagining Practical Data Use in Schools will be out through Routledge in late 2021.*
