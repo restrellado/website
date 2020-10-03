@@ -13,7 +13,7 @@ image:
   focal_point: ''
   preview_only: no
 ---
-I'm excited to be working with Routledge again for my next book, *The K-12 Educator's Data Guidebook: Reimagining Practical Data Use in Schools*. This is a project I've been wanting to do for a while now. I want to write an easy-to-use reference that everyday educators keep in their work bag as they discover how they want to use data to serve their students better. 
+I'm excited to be working with Routledge again for my next book, *The K-12 Educator's Data Guidebook: Reimagining Practical Data Use in Schools*. This is a project I've been wanting to do for a while now. This book will be an easy-to-use reference that everyday educators can keep in their work bag as they discover how they want to use data to serve their students better. 
 
 My goal for this book is to reimagine how educators build a foundation for competent data use. With this foundation, educators can better engage school initiatives, professional development, and instructional challenges that require practical data use for improving school systems. 
 
