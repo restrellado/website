@@ -1,0 +1,36 @@
+---
+title: Data Science in Education Using R Launches on October 27, 2020
+author: Ryan A. Estrellado
+date: '2020-10-04'
+slug: dsieur-launches-on-october-27-2020
+categories: []
+tags: [rstats, education, dsieur]
+subtitle: ''
+summary: 'I haven't had the chance yet to share what this book means to me personally, so I'd like to take a moment to do that here. This book is as much about being part of a community with really great people as it is about learning data science techniques.'
+authors: []
+lastmod: '2020-10-04T17:48:33-07:00'
+featured: yes
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+With the release of *Data Science in Education Using R* right around the corner,  [Emily](https://twitter.com/ebovee09), [Isabella](https://twitter.com/ivelasq3), [Jesse](https://twitter.com/kierisi), [Josh](https://twitter.com/jrosenberg6432) and I have been sharing what readers can expect from the book. You can read more at the [#dsieur hashtag on Twitter](https://twitter.com/search?q=%23DSIEUR&src=recent_search_click) or hear Josh and I talk about it on [this episode of the Education Data Chat podcast](https://www.buzzsprout.com/1074286/4993430-episode-3-data-science-in-education-using-r). 
+
+But I haven't had the chance yet to share what this book means to me personally, so I'd like to take a moment to do that here. This book is as much about being part of a community with really great people as it is about learning data science techniques. 
+
+**The R community is a big part of writing and sharing this book** 
+
+The R community has been so welcoming to me and many others. Making friends in this community and learning R with them has been such a wonderful experience. To contribute to the community by sharing our book feels rewarding. If you work in education and you're looking for ways to use R in an organization that hasn't used it before, you're not alone. I hope this book helps you imagine what that could be like, and there are stories from many others in the R and education communities that can help as well. 
+
+**We need to be able to talk about something before we can make it better** 
+
+Finding ways to use data science tools in an education role that has little to do with data science has been a multi-year journey, and I still have some way to go. To write *Data Science in Education Using R*, I had to describe what it's like to introduce data science tools to my work. If we can describe something, then we can talk about it with each other. And if we can talk about it with each other, we can solve problems together. I hope this book is part of developing a common language for data science in education, and consequently how we use data to build a positive and equitable school experience for students. 
+
+**Came for the writing, stayed for the friends** 
+
+I had the privilege of collaborating with four talented authors and data scientists. The book helped me broadened my imagination about what's possible when you collaborate. I've met Jesse only twice in person and I've yet to meet Josh, Isabella, and Emily in person. And yet somehow we've built enough trust to not only push ourselves to write the best book we could together, but also to become friends. I hope that this book can be a part of how folks connect with each other over using data science tools in education.  
+
+I hope y'all get as much out of the book as I and my co-authors did writing it. You can [pre-order Data Science in Education Using R here](https://buff.ly/36gas05) ahead of its release on October 27, 2020. 
