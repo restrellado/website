@@ -6,7 +6,7 @@ slug: dsieur-launches-on-october-27-2020
 categories: []
 tags: [rstats, education, dsieur]
 subtitle: ''
-summary: 'I haven't had the chance yet to share what this book means to me personally, so I'd like to take a moment to do that here. This book is as much about being part of a community with really great people as it is about learning data science techniques.'
+summary: ''
 authors: []
 lastmod: '2020-10-04T17:48:33-07:00'
 featured: yes
