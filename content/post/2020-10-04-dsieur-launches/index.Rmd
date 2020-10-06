@@ -33,4 +33,4 @@ Finding ways to use data science tools in an education role that has little to d
 
 I had the privilege of collaborating with four talented authors and data scientists. Writing this book broadened my imagination about what's possible when you collaborate. I've only met Jesse twice in person and I've yet to meet Josh, Isabella, or Emily in person. And yet somehow we've built enough trust to not only push ourselves to write the best book we could together, but also to become friends. I hope that this book can be a part of how folks connect with each other over using data science tools in education.  
 
-I hope y'all get as much out of the book as I and my co-authors did writing it. You can [pre-order Data Science in Education Using R here](https://buff.ly/36gas05) ahead of its release on October 27, 2020. 
+You can [pre-order Data Science in Education Using R here](https://buff.ly/36gas05) ahead of its release on October 27, 2020. 
