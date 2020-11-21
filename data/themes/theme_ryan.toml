@@ -1,18 +1,18 @@
 # Theme metadata
-name = "Ryan"
+name = "theme_ryan"
 
 # Is theme light or dark?
 light = true
 
 # Primary
-primary = "hsl(202, 50%, 44%)"
+primary = "#000000"
 
 # Menu
-menu_primary = "hsl(202, 50%, 44%)"
+menu_primary = "#5F239F"
 menu_text = "rgba(255,255,255,0.6)"
 menu_text_active = "rgba(255,255,255,1)"
 menu_title = "#fff"
 
 # Home sections
 home_section_odd = "hsl(202, 0%, 100%)"
-home_section_even = "hsl(201, 21%, 71%)"
+home_section_even = "#BBB3E7FF"
