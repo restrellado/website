@@ -1,0 +1,21 @@
+---
+title: Guest Blog Post for the Data Quality Campaign
+author: Ryan Estrellado
+date: '2021-01-12'
+slug: data-quality-campaign-guest-post
+categories: []
+tags: [education]
+summary: 'I guest wrote about practical data use in schools for the Data Quality Campaign! The Data Quality Campaign raises awareness about education data all over the country. I’m grateful for the chance to share my thoughts with their audience. In this blog post, I write about how we can rethink practical school data use.'
+authors: []
+external_link: 'https://dataqualitycampaign.org/reimagining-practical-data-use-in-schools/'
+image:
+  placement: 1
+  caption: ''
+  focal_point: 'Center'
+  preview_only: no
+url_code: ''
+url_pdf: ''
+url_slides: ''
+url_video: ''
+slides: ''
+---
