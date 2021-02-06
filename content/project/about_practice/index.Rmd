@@ -1,0 +1,21 @@
+---
+title: The About Practice Podcast
+author: Ryan Estrellado
+date: '2021-02-06'
+slug: about-practice-podcast
+categories: []
+tags: [education, podcast]
+summary: 'About Practice is a show hosted by Joshua Rosenberg and me about bridging the gap between research and practice in education. About Practice is available on Spotify and Apple Podcasts.'
+authors: []
+external_link: 'https://open.spotify.com/show/4TzYLKTen3ZiJxiiKdHAsa?si=Knz8_SaPQGe9OQTaKF0rUw'
+image:
+  placement: 1
+  caption: ''
+  focal_point: 'Center'
+  preview_only: no
+url_code: ''
+url_pdf: ''
+url_slides: ''
+url_video: ''
+slides: ''
+---
