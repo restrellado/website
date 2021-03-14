@@ -5,9 +5,9 @@ name = "ryan"
 light = true
 
 # Primary
-primary = "#b9b4e3"
-primary_light = "b9b4e3"
-primary_dark = "#b9b4e3"
+primary = "#24f1C8"
+primary_light = "24f1C8"
+primary_dark = "#24f1C8"
 
 # Menu
 menu_primary = "#5f239f"
