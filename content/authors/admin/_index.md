@@ -62,8 +62,12 @@ user_groups:
 
 I work at the San Diego South County SELPA, where I design solutions to help school districts build equitable systems for students with disabilities. This is my personal website, where I write about data work, education and other projects. 
 
-I'm writing a new book called *The K--12 Educator's Data Guidebook: Reimagining Practical Data Use in Schools*. It will be out in late 2021 through Routledge. 
+I'm writing a new book called *The K--12 Educator's Data Guidebook: Reimagining Practical Data Use in Schools*. It will be out in late 2021 through Routledge.  
+
+## **Sign Up for Practical Data Activities**
 
 The book includes practical data activities for K--12 educators, but you don't have to wait until it comes out to get them. I email a new activity every two weeks to community members. [Use this link to subscribe](https://mailchi.mp/25cd9ce3ce44/k12-educators-data-activities) and you'll get your first one this Monday. 
+
+## **More Updates**
 
 Follow me on [Instagram](https://www.instagram.com/accounts/edit/) for more book updates, writing tips, and data work. 
