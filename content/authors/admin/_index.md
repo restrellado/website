@@ -34,7 +34,7 @@ social:
   link: https://www.instagram.com/ry_estrellado/
 - icon: twitter
   icon_pack: fab
-  link: https://twitter.com/RyanEs
+  link: https://twitter.com/ry_estrellado
 - icon: linkedin
   icon_pack: fab
   link: https://www.linkedin.com/in/ryanestrellado/
