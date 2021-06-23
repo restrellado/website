@@ -18,7 +18,7 @@ organizations:
 - url: ""
 
 # Short bio (displayed in user profile at end of posts)
-bio: I work at the San Diego South County SELPA, where I design solutions to help SELPAs build equitable systems for students with disabilities. 
+bio: I teach K–12 educators how to use data confidently in their everyday work.
 
 interests:
 
@@ -60,14 +60,18 @@ user_groups:
 - Visitors
 ---
 
-I work at the San Diego South County SELPA, where I design solutions to help school districts build equitable systems for students with disabilities. This is my personal website, where I write about data work, education and other projects. 
+## If you're a K–12 educator who wants to learn to use data confidently in your everyday work, I want to help. 
 
-I'm writing a new book called *The K--12 Educator's Data Guidebook: Reimagining Practical Data Use in Schools*. It will be out in late 2021 through Routledge.  
+My name is Ryan Estrellado, and I'm the author of the upcoming book *The K–12 Educator's Data Guidebook: Reimagining Practical Data Use in Schools*, which will be out in late 2021. I'm writing this book as a how-to guide for data that speaks to you, the educator. 
 
-## **Sign Up for Practical Data Activities**
+### Sign Up for My Practical Data Tips Newsletter
 
-The book includes practical data activities for K--12 educators, but you don't have to wait until it comes out to get them. I email a new activity every two weeks to community members. [Use this link to subscribe](https://mailchi.mp/25cd9ce3ce44/k12-educators-data-activities) and you'll get your first one this Monday. 
+Here's the good news: you don't have to wait until the book comes out to start learning practical data activities that you can use at work today. [Sign up for my practical data activity newsletter](https://mailchi.mp/25cd9ce3ce44/k12-educators-data-activities) and join a community of people learning to get started with data. 
 
-## **More Updates**
+### Be the First to Know When You Can Pre-Order the Book
 
-Follow me on [Instagram](https://www.instagram.com/accounts/edit/) for more book updates, writing tips, and data work. 
+Follow me on [Instagram](https://www.instagram.com/ry_estrellado/) and you'll be the first to know when *The K–12 Educator's Data Guidebook* is available for pre-order. I also post [writing tips](https://www.instagram.com/p/CPo1cxkAQhr/?utm_source=ig_web_copy_link) and pictures of my cute dog, [Marcy](https://www.instagram.com/p/CQM4ltEIIYe/?utm_source=ig_web_copy_link). 
+
+### For Aspiring Data Scientists in Education
+
+If you're an educator interested in bringing data science to your job and you don't know where to start, I can help with that too. I wrote a book with four amazing co-authors called *Data Science in Education Using R*. [Buy it in print here](https://www.amazon.com/Data-Science-Education-Using-R/dp/0367422255/ref=sr_1_3?dchild=1&keywords=data+science+in+education+using+r&qid=1624421665&sr=8-3). You can also [read it for free here](https://datascienceineducation.com).
