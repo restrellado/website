@@ -10,7 +10,7 @@ authors:
 superuser: true
 
 # Role/position
-role: I teach K–12 educators how to use data confidently in their everyday work.
+role: Educator and Author
 
 # Organizations/Affiliations
 organizations: 
