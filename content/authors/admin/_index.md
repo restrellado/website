@@ -10,7 +10,7 @@ authors:
 superuser: true
 
 # Role/position
-role: Executive Consultant at South County SELPA, Educator, and Data Scientist
+role: I teach K–12 educators how to use data confidently in their everyday work.
 
 # Organizations/Affiliations
 organizations: 
